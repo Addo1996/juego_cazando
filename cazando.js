@@ -78,4 +78,17 @@ function actualizarPantalla() {
     limpiarCanva();
     graficarGato();
     graficarComida(); // La comida debe volver a dibujarse porque limpiarCanva borra todo [cite: 87]
+    detectarColision(); // Llamar cada vez que el gato se mueva
+}
+
+// PARTE 4-COMER 
+function detectarColision() {
+    // Lógica básica de colisión considerando posiciones y dimensiones [cite: 103, 108]
+    if (gatoX < comidaX + ANCHO_COMIDA &&
+        gatoX + ANCHO_GATO > comidaX &&
+        gatoY < comidaY + ALTO_COMIDA &&
+        gatoY + ALTO_GATO > comidaY) {
+        
+        alert("¡El gato ha atrapado la comida!"); // 
+    }
 }
