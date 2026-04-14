@@ -46,3 +46,36 @@ function iniciarJuego() {
     graficarGato();
     graficarComida();
 }
+
+// 1. Crear la función limpiarCanva [cite: 83]
+function limpiarCanva() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+// 2. Funciones de movimiento [cite: 84, 91]
+function moverIzquierda() {
+    gatoX -= 10; // Restar 10 a la posición X [cite: 85]
+    actualizarPantalla();
+}
+
+function moverDerecha() {
+    gatoX += 10; // Sumar 10 a la posición X [cite: 92]
+    actualizarPantalla();
+}
+
+function moverArriba() {
+    gatoY -= 10; // Restar 10 a la posición Y [cite: 93]
+    actualizarPantalla();
+}
+
+function moverAbajo() {
+    gatoY += 10; // Sumar 10 a la posición Y [cite: 94]
+    actualizarPantalla();
+}
+
+// Función auxiliar para refrescar el canvas tras cada movimiento [cite: 86, 87]
+function actualizarPantalla() {
+    limpiarCanva();
+    graficarGato();
+    graficarComida(); // La comida debe volver a dibujarse porque limpiarCanva borra todo [cite: 87]
+}
