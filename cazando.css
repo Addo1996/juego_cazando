@@ -1,0 +1,21 @@
+/* cazando.css */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center; /* Centra el título y el autor */
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+/* Estilos para el canvas */
+#areaJuego {
+    background-color: #ffffff;
+    border: 2px solid #333; /* Borde oscuro para ver los límites */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    margin: 0 auto;
+    display: block; /* Centra el canvas en la pantalla */
+}
