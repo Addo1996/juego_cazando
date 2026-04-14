@@ -2,7 +2,7 @@
 const canvas = document.getElementById("areaJuego");
 const ctx = canvas.getContext("2d");
 
-// 16. Definir variables de posición (inicializadas en 0) [cite: 44, 45, 46]
+// 16. Definir variables de posición (inicializadas en 0) cite: 44, 45, 46
 let gatoX = 0;
 let gatoY = 0;
 let comidaX = 0;
