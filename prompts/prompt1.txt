@@ -1,0 +1,3 @@
+Mejora el diseño CSS de un juego en canvas usando HTML y CSS. 
+Debe ser simple, centrado, con botones bonitos y colores agradables. 
+No modificar JavaScript.

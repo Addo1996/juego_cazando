@@ -1,0 +1,2 @@
+Agrega mejoras visuales a un juego web: fondo claro, contenedor centrado, botones con hover y mejor presentación del marcador. 
+Mantener el diseño simple y funcional.

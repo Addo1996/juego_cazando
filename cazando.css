@@ -1,21 +1,74 @@
-/* cazando.css */
 body {
-    font-family: Arial, sans-serif;
-    text-align: center; /* Centra el título y el autor */
-    background-color: #f4f4f9;
     margin: 0;
+    font-family: 'Courier New', monospace;
+    background: radial-gradient(circle, #0f2027, #203a43, #2c5364);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* CONTENEDOR */
+.game-ui {
+    background: #111;
     padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    color: #0f0;
+    box-shadow: 0 0 20px #00ff99;
 }
 
+/* TITULO */
 h1 {
-    color: #960000;
+    margin: 0;
+    color: #00ffcc;
 }
 
-/* Estilos para el canvas */
+.autor {
+    font-size: 14px;
+    color: #aaa;
+}
+
+/* PANEL */
+.panel {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+/* CANVAS */
 #areaJuego {
-    background-color: #ffffff;
-    border: 2px solid #333; /* Borde oscuro para ver los límites */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-    margin: 0 auto;
-    display: block; /* Centra el canvas en la pantalla */
+    background: black;
+    border: 3px solid #00ffcc;
+    box-shadow: 0 0 15px #00ffcc;
+    margin: 10px 0;
+}
+
+/* BOTONES */
+button {
+    background: #00ffcc;
+    border: none;
+    color: black;
+    padding: 10px 15px;
+    margin: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #00cc99;
+    transform: scale(1.1);
+}
+
+/* BOTÓN RESET */
+.reset {
+    background: #ff4444;
+    color: white;
+}
+
+.reset:hover {
+    background: #cc0000;
 }
