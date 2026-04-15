@@ -1,94 +1,147 @@
-// 7. Obtener el canvas y su contexto [cite: 31]
+// CANVAS
 const canvas = document.getElementById("areaJuego");
 const ctx = canvas.getContext("2d");
 
-// 16. Definir variables de posición (inicializadas en 0) cite: 44, 45, 46
+// POSICIONES
 let gatoX = 0;
 let gatoY = 0;
 let comidaX = 0;
 let comidaY = 0;
 
-// 16. Definir constantes de tamaño [cite: 47, 48, 49, 50, 51]
+// TAMAÑOS
 const ANCHO_GATO = 50;
 const ALTO_GATO = 50;
 const ANCHO_COMIDA = 20;
 const ALTO_COMIDA = 20;
 
-// 20. Función genérica para graficar rectángulos [cite: 59, 60]
+// PUNTAJE Y TIEMPO
+let puntaje = 0;
+let tiempo = 10;
+let intervalo;
+
+// DIBUJAR RECTÁNGULO
 function graficarRectangulo(x, y, ancho, alto, color) {
     ctx.fillStyle = color;
     ctx.fillRect(x, y, ancho, alto);
 }
 
-// 8 y 21. Función para dibujar al gato usando la función genérica [cite: 32, 61]
+// DIBUJAR GATO
 function graficarGato() {
     graficarRectangulo(gatoX, gatoY, ANCHO_GATO, ALTO_GATO, "blue");
 }
 
-// 12 y 21. Función para dibujar la comida usando la función genérica [cite: 36, 61]
+// DIBUJAR COMIDA
 function graficarComida() {
     graficarRectangulo(comidaX, comidaY, ANCHO_COMIDA, ALTO_COMIDA, "red");
 }
 
-// 13. Función principal para iniciar el juego [cite: 41]
+// INICIAR JUEGO
 function iniciarJuego() {
-    // 17. Asignar valores para posicionar elementos [cite: 53]
-    
-    // El gato aparece centrado [cite: 55]
+    // posiciones iniciales
     gatoX = (canvas.width / 2) - (ANCHO_GATO / 2);
     gatoY = (canvas.height / 2) - (ALTO_GATO / 2);
 
-    // La comida aparece en la esquina inferior derecha [cite: 56]
     comidaX = canvas.width - ANCHO_COMIDA;
     comidaY = canvas.height - ALTO_COMIDA;
 
-    // Dibujar los elementos [cite: 43]
+    // reset valores
+    puntaje = 0;
+    tiempo = 10;
+
+    document.getElementById("puntaje").textContent = puntaje;
+    document.getElementById("tiempo").textContent = tiempo;
+
+    // iniciar tiempo
+    clearInterval(intervalo);
+    intervalo = setInterval(restarTiempo, 1000);
+
+    // dibujar
+    limpiarCanva();
     graficarGato();
     graficarComida();
 }
 
-// 1. Crear la función limpiarCanva [cite: 83]
+// LIMPIAR CANVAS
 function limpiarCanva() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-// 2. Funciones de movimiento [cite: 84, 91]
+// ACTUALIZAR PANTALLA
+function actualizarPantalla() {
+    limpiarCanva();
+    graficarGato();
+    graficarComida();
+    detectarColision();
+}
+
+// MOVIMIENTOS
 function moverIzquierda() {
-    gatoX -= 10; // Restar 10 a la posición X [cite: 85]
+    gatoX -= 10;
+    limitarMovimiento();
     actualizarPantalla();
 }
 
 function moverDerecha() {
-    gatoX += 10; // Sumar 10 a la posición X [cite: 92]
+    gatoX += 10;
+    limitarMovimiento();
     actualizarPantalla();
 }
 
 function moverArriba() {
-    gatoY -= 10; // Restar 10 a la posición Y [cite: 93]
+    gatoY -= 10;
+    limitarMovimiento();
     actualizarPantalla();
 }
 
 function moverAbajo() {
-    gatoY += 10; // Sumar 10 a la posición Y [cite: 94]
+    gatoY += 10;
+    limitarMovimiento();
     actualizarPantalla();
 }
 
-// Función auxiliar para refrescar el canvas tras cada movimiento [cite: 86, 87]
-function actualizarPantalla() {
-    limpiarCanva();
-    graficarGato();
-    graficarComida(); // La comida debe volver a dibujarse porque limpiarCanva borra todo [cite: 87]
-    detectarColision(); // Llamar cada vez que el gato se mueva
+// EVITAR QUE SALGA DEL CANVAS
+function limitarMovimiento() {
+    if (gatoX < 0) gatoX = 0;
+    if (gatoX > canvas.width - ANCHO_GATO) gatoX = canvas.width - ANCHO_GATO;
+    if (gatoY < 0) gatoY = 0;
+    if (gatoY > canvas.height - ALTO_GATO) gatoY = canvas.height - ALTO_GATO;
 }
 
-// PARTE 4-COMER 
+// DETECTAR COLISIÓN
 function detectarColision() {
-    // Lógica básica de colisión considerando posiciones y dimensiones [cite: 103, 108]
-    if (gatoX < comidaX + ANCHO_COMIDA &&
+    if (
+        gatoX < comidaX + ANCHO_COMIDA &&
         gatoX + ANCHO_GATO > comidaX &&
         gatoY < comidaY + ALTO_COMIDA &&
-        gatoY + ALTO_GATO > comidaY) {
-        
-        alert("¡El gato ha atrapado la comida!"); // 
+        gatoY + ALTO_GATO > comidaY
+    ) {
+        // sumar puntos
+        puntaje++;
+        document.getElementById("puntaje").textContent = puntaje;
+
+        // nueva posición aleatoria
+        comidaX = Math.random() * (canvas.width - ANCHO_COMIDA);
+        comidaY = Math.random() * (canvas.height - ALTO_COMIDA);
     }
+}
+
+// TIEMPO
+function restarTiempo() {
+    tiempo--;
+    document.getElementById("tiempo").textContent = tiempo;
+
+    if (puntaje >= 6) {
+        alert("¡Ganaste!");
+        clearInterval(intervalo);
+    }
+
+    if (tiempo <= 0) {
+        alert("Game Over");
+        clearInterval(intervalo);
+    }
+}
+
+// REINICIAR JUEGO
+function reiniciarJuego() {
+    iniciarJuego();
 }
