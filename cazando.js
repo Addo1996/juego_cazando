@@ -27,7 +27,7 @@ function graficarRectangulo(x, y, ancho, alto, color) {
 
 // DIBUJAR GATO
 function graficarGato() {
-    graficarRectangulo(gatoX, gatoY, ANCHO_GATO, ALTO_GATO, "blue");
+    graficarRectangulo(gatoX, gatoY, ANCHO_GATO, ALTO_GATO, "#772080");
 }
 
 // DIBUJAR COMIDA
@@ -38,8 +38,8 @@ function graficarComida() {
 // INICIAR JUEGO
 function iniciarJuego() {
     // posiciones iniciales
-    gatoX = (canvas.width / 2) - (ANCHO_GATO / 2);
-    gatoY = (canvas.height / 2) - (ALTO_GATO / 2);
+    gatoX = (0) + (ANCHO_GATO);
+    gatoY = (0) + (ALTO_GATO);
 
     comidaX = canvas.width - ANCHO_COMIDA;
     comidaY = canvas.height - ALTO_COMIDA;
