@@ -118,6 +118,8 @@ function detectarColision() {
         // sumar puntos
         puntaje++;
         document.getElementById("puntaje").textContent = puntaje;
+        tiempo=15
+        document.getElementById("tiempo").textContent = tiempo
 
         // nueva posición aleatoria
         comidaX = Math.random() * (canvas.width - ANCHO_COMIDA);
