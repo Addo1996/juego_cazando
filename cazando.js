@@ -16,7 +16,7 @@ const ALTO_COMIDA = 20;
 
 // PUNTAJE Y TIEMPO
 let puntaje = 0;
-let tiempo = 120;
+let tiempo = 15;
 let intervalo;
 
 // DIBUJAR RECTÁNGULO
@@ -46,7 +46,7 @@ function iniciarJuego() {
 
     // reset valores
     puntaje = 0;
-    tiempo = 120;
+    tiempo = 15;
 
     document.getElementById("puntaje").textContent = puntaje;
     document.getElementById("tiempo").textContent = tiempo;
