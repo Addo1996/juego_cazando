@@ -18,7 +18,7 @@ const ALTO_COMIDA = 20;
 let puntaje = 0;
 let tiempo = 15;
 let intervalo;
-
+let limiteTiempoActual = 15
 // DIBUJAR RECTÁNGULO
 function graficarRectangulo(x, y, ancho, alto, color) {
     ctx.fillStyle = color;
@@ -118,8 +118,12 @@ function detectarColision() {
         // sumar puntos
         puntaje++;
         document.getElementById("puntaje").textContent = puntaje;
-        tiempo=15
-        document.getElementById("tiempo").textContent = tiempo
+        //tiempo=15
+        //document.getElementById("tiempo").textContent = tiempo
+
+        limiteTiempoActual --;
+        tiempo=limiteTiempoActual;
+        document.getElementById("tiempo").textContent =tiempo
 
         // nueva posición aleatoria
         comidaX = Math.random() * (canvas.width - ANCHO_COMIDA);
